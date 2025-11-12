@@ -1,0 +1,13 @@
+public class StaticMethodWithParameter{
+	public static void main(String [] args){
+		addition(800,567,34);
+		addition(6,7,90);
+		
+	}
+	public static void additon(int num1, int num2, int num3){
+		int sum = num1 + num2 +num3;
+		Sytem.out.printf("The sum is %d%n", sum)
+		
+	}
+	
+}
