@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 public class DuplicateElimination{
  public static void main(String[]a){
   Scanner s=new Scanner(System.in);

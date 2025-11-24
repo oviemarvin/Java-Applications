@@ -1,11 +1,18 @@
 import java.util.Scanner;
-public class CommandLineArraySize{
+public class DuplicateElimination{
  public static void main(String[]a){
-  int size=10;
-  if(a.length>0)try{size=Integer.parseInt(a[0]);}catch(Exception e){}
-  int[] arr=new int[size];
-  for(int i=0;i<arr.length;i++)arr[i]=i+1;
-  for(int v:arr)System.out.print(v+" ");
-  System.out.println();
+  Scanner s=new Scanner(System.in);
+  int[] unique=new int[5];
+  int count=0;
+  for(int i=0;i<5;i++){
+   int n=s.nextInt();
+   boolean dup=false;
+   for(int j=0;j<count;j++)if(unique[j]==n){dup=true;break;}
+   if(!dup){unique[count++]=n;}
+   for(int j=0;j<count;j++){
+    System.out.print(unique[j]+" ");
+   }
+   System.out.println();
+  }
  }
 }
