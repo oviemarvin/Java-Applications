@@ -1,10 +1,19 @@
-public class ArrayOperations{
+
+import java.util.Scanner;
+public class DuplicateElimination{
  public static void main(String[]a){
-  int[] counts=new int[10];
-  for(int i=0;i<counts.length;i++)counts[i]=0;
-  int[] bonus=new int[15];
-  for(int i=0;i<bonus.length;i++)bonus[i]++;
-  int[] bestScores={95,88,76,100,83};
-  for(int v:bestScores)System.out.println(v);
+  Scanner s=new Scanner(System.in);
+  int[] unique=new int[5];
+  int count=0;
+  for(int i=0;i<5;i++){
+   int n=s.nextInt();
+   boolean dup=false;
+   for(int j=0;j<count;j++)if(unique[j]==n){dup=true;break;}
+   if(!dup){unique[count++]=n;}
+   for(int j=0;j<count;j++){
+    System.out.print(unique[j]+" ");
+   }
+   System.out.println();
+  }
  }
 }

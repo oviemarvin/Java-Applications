@@ -1,34 +1,39 @@
-
 import java.util.Scanner;
-public class TotalSales{
+public class AirlineReservation{
  public static void main(String[]a){
-  double[][] sales=new double[5][4];
+  boolean[] seats=new boolean[10];
   Scanner s=new Scanner(System.in);
-  System.out.println("Enter sales slips (salesperson 1-4, product 1-5, amount). Enter 0 0 0 to finish.");
   while(true){
-   int sp=s.nextInt();
-   int pr=s.nextInt();
-   double amt=s.nextDouble();
-   if(sp==0 && pr==0 && amt==0)break;
-   if(sp>=1 && sp<=4 && pr>=1 && pr<=5){
-    sales[pr-1][sp-1]+=amt;
+   System.out.println("Type 1 for First Class, 2 for Economy, 0 to exit:");
+   int choice=s.nextInt();
+   if(choice==0)break;
+   if(choice==1){
+    int seat=-1;
+    for(int i=0;i<5;i++)if(!seats[i]){seat=i;break;}
+    if(seat!=-1){seats[seat]=true;System.out.println("Boarding pass: First Class seat "+(seat+1));}
+    else{
+     System.out.println("First class full. Accept economy? 1=yes 0=no");
+     if(s.nextInt()==1){
+      seat=-1;
+      for(int i=5;i<10;i++)if(!seats[i]){seat=i;break;}
+      if(seat!=-1){seats[seat]=true;System.out.println("Boarding pass: Economy seat "+(seat+1));}
+      else System.out.println("Next flight leaves in 3 hours.");
+     } else System.out.println("Next flight leaves in 3 hours.");
+    }
+   } else if(choice==2){
+    int seat=-1;
+    for(int i=5;i<10;i++)if(!seats[i]){seat=i;break;}
+    if(seat!=-1){seats[seat]=true;System.out.println("Boarding pass: Economy seat "+(seat+1));}
+    else{
+     System.out.println("Economy full. Accept first class? 1=yes 0=no");
+     if(s.nextInt()==1){
+      seat=-1;
+      for(int i=0;i<5;i++)if(!seats[i]){seat=i;break;}
+      if(seat!=-1){seats[seat]=true;System.out.println("Boarding pass: First Class seat "+(seat+1));}
+      else System.out.println("Next flight leaves in 3 hours.");
+     } else System.out.println("Next flight leaves in 3 hours.");
+    }
    }
   }
-  System.out.print("Product\\Salesperson\t1\t2\t3\t4\tTotal\n");
-  double[] colTotal=new double[4];
-  for(int i=0;i<5;i++){
-   double rowTotal=0;
-   System.out.print((i+1)+"\t");
-   for(int j=0;j<4;j++){
-    System.out.print((int)sales[i][j]+"\t");
-    rowTotal+=sales[i][j];
-    colTotal[j]+=sales[i][j];
-   }
-   System.out.println((int)rowTotal);
-  }
-  System.out.print("Total\t");
-  double grand=0;
-  for(int j=0;j<4;j++){System.out.print((int)colTotal[j]+"\t");grand+=colTotal[j];}
-  System.out.println((int)grand);
  }
 }
