@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 public class CommandLineArraySize{
  public static void main(String[]a){
   int size=10;
