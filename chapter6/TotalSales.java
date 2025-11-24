@@ -1,39 +1,54 @@
 import java.util.Scanner;
-public class AirlineReservation{
- public static void main(String[]a){
-  boolean[] seats=new boolean[10];
-  Scanner s=new Scanner(System.in);
-  while(true){
-   System.out.println("Type 1 for First Class, 2 for Economy, 0 to exit:");
-   int choice=s.nextInt();
-   if(choice==0)break;
-   if(choice==1){
-    int seat=-1;
-    for(int i=0;i<5;i++)if(!seats[i]){seat=i;break;}
-    if(seat!=-1){seats[seat]=true;System.out.println("Boarding pass: First Class seat "+(seat+1));}
-    else{
-     System.out.println("First class full. Accept economy? 1=yes 0=no");
-     if(s.nextInt()==1){
-      seat=-1;
-      for(int i=5;i<10;i++)if(!seats[i]){seat=i;break;}
-      if(seat!=-1){seats[seat]=true;System.out.println("Boarding pass: Economy seat "+(seat+1));}
-      else System.out.println("Next flight leaves in 3 hours.");
-     } else System.out.println("Next flight leaves in 3 hours.");
+
+public class TotalSales {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        double[][] sales = new double[5][4]; // 5 products, 4 salespeople
+        
+        System.out.println("Enter sales data (salesperson product amount), -1 to end:");
+        
+        while (true) {
+            System.out.print("Enter salesperson (1-4), product (1-5), amount: ");
+            int salesperson = input.nextInt();
+            if (salesperson == -1) break;
+            
+            int product = input.nextInt();
+            if (product == -1) break;
+            
+            double amount = input.nextDouble();
+            if (amount == -1) break;
+            
+            sales[product - 1][salesperson - 1] += amount;
+        }
+        
+        // Display results
+        System.out.println("\nTotal Sales Report");
+        System.out.println("Product\\Salesperson\t1\t2\t3\t4\tTotal");
+        
+        double[] productTotals = new double[5];
+        double[] salespersonTotals = new double[4];
+        double grandTotal = 0;
+        
+        for (int product = 0; product < 5; product++) {
+            System.out.printf("Product %d\t\t", product + 1);
+            double productTotal = 0;
+            
+            for (int salesperson = 0; salesperson < 4; salesperson++) {
+                System.out.printf("%.2f\t", sales[product][salesperson]);
+                productTotal += sales[product][salesperson];
+                salespersonTotals[salesperson] += sales[product][salesperson];
+            }
+            
+            System.out.printf("%.2f%n", productTotal);
+            productTotals[product] = productTotal;
+            grandTotal += productTotal;
+        }
+        
+        // Display salesperson totals
+        System.out.print("Salesperson Total\t");
+        for (int i = 0; i < 4; i++) {
+            System.out.printf("%.2f\t", salespersonTotals[i]);
+        }
+        System.out.printf("%.2f%n", grandTotal);
     }
-   } else if(choice==2){
-    int seat=-1;
-    for(int i=5;i<10;i++)if(!seats[i]){seat=i;break;}
-    if(seat!=-1){seats[seat]=true;System.out.println("Boarding pass: Economy seat "+(seat+1));}
-    else{
-     System.out.println("Economy full. Accept first class? 1=yes 0=no");
-     if(s.nextInt()==1){
-      seat=-1;
-      for(int i=0;i<5;i++)if(!seats[i]){seat=i;break;}
-      if(seat!=-1){seats[seat]=true;System.out.println("Boarding pass: First Class seat "+(seat+1));}
-      else System.out.println("Next flight leaves in 3 hours.");
-     } else System.out.println("Next flight leaves in 3 hours.");
-    }
-   }
-  }
- }
 }
