@@ -1,4 +1,5 @@
-import java.util.*;
+
+import java.util.Scanner;
 public class TotalSales{
  public static void main(String[]a){
   double[][] sales=new double[5][4];
