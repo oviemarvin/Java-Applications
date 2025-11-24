@@ -1,5 +1,5 @@
-import java.util.Scanner;
-public class DiceRolling{
+
+public class DiceRolliilng{
  public static void main(String[]a){
   long rolls=36000000L;
   long[] tally=new long[13];
@@ -12,4 +12,3 @@ public class DiceRolling{
   System.out.println("Sum\tCount");
   for(int i=2;i<=12;i++)System.out.println(i+"\t"+tally[i]);
  }
-}
